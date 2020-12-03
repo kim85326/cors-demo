@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>CORS Demo</title>
+	</head>
+	<body>
+		<h1>Hello, I'm Web Server</h1>
+		<button onclick="sendSimple()">簡單請求</button>
+		<button onclick="sendNotSimple()">非簡單請求</button>
+		<script>
+			const API_BASE_URL = "http://localhost:4000";
+
+			function sendSimple() {
+				var xhr = new XMLHttpRequest();
+				xhr.open("GET", `${API_BASE_URL}/simple`);
+				xhr.send();
+			}
+
+			function sendNotSimple() {
+				var xhr = new XMLHttpRequest();
+				xhr.open("POST", `${API_BASE_URL}/not-simple`);
+				xhr.setRequestHeader("Content-type", "application/json");
+				xhr.send(JSON.stringify({ a: "bbb" }));
+			}
+		</script>
+	</body>
+</html>
